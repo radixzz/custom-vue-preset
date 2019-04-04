@@ -5,7 +5,6 @@
 import Preloader from 'preloader'
 
 const preloader = new Preloader({})
-console.log(require('assets/svg/captions-off.svg'));
 preloader.add(require('assets/data/data.json'));
 
 export default preloader

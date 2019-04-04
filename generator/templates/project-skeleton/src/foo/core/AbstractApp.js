@@ -4,9 +4,6 @@ import { Signal } from "signals";
 import throttle from "lodash/throttle";
 import LocaleManager from "foo/core/locale/LocaleManager";
 
-
-console.log(data);
-
 export default class AbstractApp {
     /**
      * Signal dispatching on app animationFrame
