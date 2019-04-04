@@ -1,5 +1,5 @@
 build/*.js
 config/*.js
 dist/*.js
-src/foo/*.js
-src/foo/*.vue
+src/foo/**/*.js
+src/foo/**/*.vue
