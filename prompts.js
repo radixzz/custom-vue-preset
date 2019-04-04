@@ -14,29 +14,29 @@ function getDependencyChoices()  {
   });
 }
 module.exports = [
-  {
-    name: 'addPreloader',
-    type: 'confirm',
-    message: 'Add site preloader setup?',
-    default: false
-  },
-  {
-    name: 'addApiSkeleton',
-    type: 'confirm',
-    message: 'This project will consume a REST API',
-    default: true,
-  },
-  {
-    name: 'configureOptionalDeps',
-    type: 'confirm',
-    message: 'Configure optional dependencies?',
-    default: false
-  },
-  {
-    name: 'optionalDependencies',
-    type: 'checkbox',
-    message: '👉 Pick your packages',
-    when: a => a.configureOptionalDeps,
-    choices: getDependencyChoices(),
-  },
+  // {
+  //   name: 'addPreloader',
+  //   type: 'confirm',
+  //   message: 'Add site preloader setup?',
+  //   default: false
+  // },
+  // {
+  //   name: 'addApiSkeleton',
+  //   type: 'confirm',
+  //   message: 'This project will consume a REST API',
+  //   default: true,
+  // },
+  // {
+  //   name: 'configureOptionalDeps',
+  //   type: 'confirm',
+  //   message: 'Configure optional dependencies?',
+  //   default: false
+  // },
+  // {
+  //   name: 'optionalDependencies',
+  //   type: 'checkbox',
+  //   message: '👉 Pick your packages',
+  //   when: a => a.configureOptionalDeps,
+  //   choices: getDependencyChoices(),
+  // },
 ]
