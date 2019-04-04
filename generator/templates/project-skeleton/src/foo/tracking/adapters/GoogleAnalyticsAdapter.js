@@ -17,7 +17,7 @@ export default class GoogleAnalyticsAdapter extends AnalyticsAdapter {
                 a.async = 1;
                 a.src = g;
                 m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'));
             ga('create', ID, 'auto');
             ga('send', 'pageview');
             resolve();

@@ -61,9 +61,7 @@ const mutations = {
 };
 
 const getters = {
-    loggedIn: state => {
-        return state.logged;
-    }
+    loggedIn: state => state.logged
 };
 
 export default { state, actions, mutations, getters };

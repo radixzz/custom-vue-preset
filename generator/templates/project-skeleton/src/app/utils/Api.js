@@ -1,2 +1,3 @@
-import Api from './core/Api.js'
+import Api from './core/Api'
+
 export default new Api()

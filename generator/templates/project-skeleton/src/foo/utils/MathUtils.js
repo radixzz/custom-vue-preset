@@ -71,8 +71,8 @@ export function map(value, min1, max1, min2, max2) {
  * @returns {number} The preferred radio
  */
 export function findPreferredRatio(width, height, maxWidth, maxHeight) {
-    let dw = maxWidth / width;
-    let dh = maxHeight / height;
+    const dw = maxWidth / width;
+    const dh = maxHeight / height;
     return dw < dh ? dw : dh;
 }
 
@@ -96,7 +96,7 @@ export function limit(value, min, max) {
  * @returns {number} The number rounbded
  */
 export function roundNumber(val, digits = 0) {
-    let factor = Math.pow(10, digits);
+    const factor = Math.pow(10, digits);
     return Math.round(val * factor) / factor;
 }
 

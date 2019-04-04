@@ -5,7 +5,7 @@
      */
 export function hasValues(object) {
     if (object instanceof Array) return object.length > 0;
-    for (let key in object) {
+    for (const key in object) {
         if (object.hasOwnProperty(key)) {
             return true;
         }
@@ -20,7 +20,7 @@ export function hasValues(object) {
  */
 export function getLength(object) {
     let count = 0;
-    for (let key in object) {
+    for (const key in object) {
         count++;
     }
     return count;
@@ -32,8 +32,8 @@ export function getLength(object) {
  * @returns {Array.<String>} The array of keys of the given object
  */
 export function getKeys(object) {
-    let keys = [];
-    for (let key in object) {
+    const keys = [];
+    for (const key in object) {
         if (object.hasOwnProperty(key)) {
             keys.push(key);
         }
@@ -47,8 +47,8 @@ export function getKeys(object) {
  * @returns {Array} The array of values of the given object
  */
 export function getValues(object) {
-    let values = [];
-    for (let key in object) {
+    const values = [];
+    for (const key in object) {
         if (object.hasOwnProperty(key)) {
             values.push(object[key]);
         }
@@ -62,7 +62,7 @@ export function getValues(object) {
  * @returns {boolean} A boolean determining if the object has keys
  */
 export function hasKeys(object) {
-    for (let key in object) {
+    for (const key in object) {
         if (object.hasOwnProperty(key)) {
             return true;
         }

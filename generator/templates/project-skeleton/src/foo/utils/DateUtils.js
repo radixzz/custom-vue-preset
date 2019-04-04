@@ -56,12 +56,12 @@ export function parseFromSqlDateTime(dateTime) {
     dateTime = dateTime.replace("Z", " GMT-0000");
     dateTime = dateTime.replace(/\.[0-9]{3}/g, "");
 
-    let date = new Date(Date.parse(dateTime));
+    const date = new Date(Date.parse(dateTime));
     if (date.toString() === "Invalid Date") {
         return null;
-    } else {
-        return date;
     }
+    return date;
+
 }
 
 /**
@@ -70,7 +70,7 @@ export function parseFromSqlDateTime(dateTime) {
  * @returns {string} The resulting string
  */
 export function getShortYear(date) {
-    let year = date.getFullYear().toString();
+    const year = date.getFullYear().toString();
     if (year.length < 3) {
         return year;
     }
@@ -89,16 +89,16 @@ export function getShortYear(date) {
  * @returns {number} The number of the result
  */
 export function compareDates(date1, date2) {
-    let d1ms = date1.getTime();
-    let d2ms = date2.getTime();
+    const d1ms = date1.getTime();
+    const d2ms = date2.getTime();
 
     if (d1ms > d2ms) {
         return -1;
-    } else if (d1ms < d2ms) {
+    } if (d1ms < d2ms) {
         return 1;
-    } else {
-        return 0;
     }
+    return 0;
+
 }
 
 /**
@@ -109,14 +109,14 @@ export function compareDates(date1, date2) {
  * @returns {number} The hours parsed from date
  */
 export function getShortHour(date) {
-    let h = date.getHours();
+    const h = date.getHours();
     if (h === 0 || h === 12) {
         return 12;
-    } else if (h > 12) {
+    } if (h > 12) {
         return h - 12;
-    } else {
-        return h;
     }
+    return h;
+
 }
 
 /**
@@ -171,7 +171,7 @@ export function age(birthdate, on = null) {
     if (!on) {
         on = new Date();
     }
-    let _age = on.getFullYear() - birthdate.getFullYear();
+    const _age = on.getFullYear() - birthdate.getFullYear();
     if (birthdate.getMonth() < on.getMonth()) {
         return _age;
     }
@@ -218,8 +218,8 @@ export function getAMPM(date) {
  * @returns {number} The number of week of the current date
  */
 export function getWeekOfYear(date) {
-    let dayOfYear = getDayOfYear(date);
-    let firstDay = new Date(date.getFullYear(), 0, 1);
+    const dayOfYear = getDayOfYear(date);
+    const firstDay = new Date(date.getFullYear(), 0, 1);
     let fullWeeks = (dayOfYear - (MONDAY_STARTING_WEEK[date.getDay()] + (7 - MONDAY_STARTING_WEEK[firstDay.getDay()]))) / 7;
     if (MONDAY_STARTING_WEEK[firstDay.getDay()] <= 4) {
         fullWeeks++;
@@ -234,8 +234,8 @@ export function getWeekOfYear(date) {
  * @returns {number} The day number in current year of the current Date
  */
 export function getDayOfYear(date) {
-    let firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-    let millisecondsOffset = date.getTime() - firstDayOfYear.getTime();
+    const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+    const millisecondsOffset = date.getTime() - firstDayOfYear.getTime();
     return Math.floor(millisecondsOffset / 86400000);
 }
 
@@ -248,8 +248,8 @@ export function getDayOfYear(date) {
  * @returns {Date} The resulting Date
  */
 export function getNextDayInWeek(day, hours, minutes, seconds) {
-    let d = new Date();
-    let targetDate = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hours, minutes, seconds);
+    const d = new Date();
+    const targetDate = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hours, minutes, seconds);
     if (targetDate.getDay() !== day) {
         targetDate.setDate(targetDate.getDate() + (((day + 7) - targetDate.getDay()) % 7));
     } else if (d.getTime() > targetDate.getTime()) {

@@ -1,7 +1,7 @@
 /**
  * Created by mendieta on 1/3/17.
  */
-import {developers, designers, producers} from "../../config/index";
+import { developers, designers, producers } from "../../config/index";
 
 export default class Acknowledgements {
 
@@ -20,15 +20,15 @@ export default class Acknowledgements {
      */
     static show() {
         let consoleString = '%c Developed by Foo(Studio) http://foostudio.mx \n Coded by:';
-        for (let developer of developers) {
+        for (const developer of developers) {
             consoleString += `\n * ${developer.name} - ${developer.url}`;
         }
         consoleString += '\n Designed by:';
-        for (let designer of designers) {
+        for (const designer of designers) {
             consoleString += `\n * ${designer.name} - ${designer.url}`;
         }
         consoleString += '\n Produced by:';
-        for (let producer of producers) {
+        for (const producer of producers) {
             consoleString += `\n * ${producer.name}`;
         }
         console.log(consoleString, Acknowledgements.styles);

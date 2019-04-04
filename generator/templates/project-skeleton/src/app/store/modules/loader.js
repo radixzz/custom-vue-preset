@@ -16,24 +16,24 @@ const state = {
 };
 
 const actions = {
-    [LOADING]({commit}, loading){
+    [LOADING]({ commit }, loading){
         commit(LOADING, loading);
     },
-    [LOADED]({commit}){
+    [LOADED]({ commit }){
         commit(LOADED);
     },
-    [PROGRESS]({commit}, progress){
+    [PROGRESS]({ commit }, progress){
         commit(PROGRESS, progress);
     },
-    [LOAD]({commit}, assets){
+    [LOAD]({ commit }, assets){
         return new Promise((resolve, reject) => {
             commit(PROGRESS, 0);
             commit(LOAD, assets);
             commit(LOADING, true);
             if (typeof assets === "object") {
-                let loader = new Preloader();
+                const loader = new Preloader();
                 assets.foreach(file => loader.add(file));
-                loader.on("progress", (val) => commit(PROGRESS, val));
+                loader.on("progress", val => commit(PROGRESS, val));
                 loader.on("complete", () => {
                     commit(PROGRESS, 1);
                     commit(LOADED);
@@ -72,15 +72,9 @@ const mutations = {
 };
 
 const getters = {
-    loading: state => {
-        return state.loading;
-    },
-    progress: state => {
-        return state.progress;
-    },
-    loaderAssets: state => {
-        return state.assets;
-    }
+    loading: state => state.loading,
+    progress: state => state.progress,
+    loaderAssets: state => state.assets
 };
 
-export default {state, actions, mutations, getters};
+export default { state, actions, mutations, getters };

@@ -4,7 +4,7 @@
 import store from "@/app/store";
 import AnalyticsAdapterManager from "foo/tracking/adapters/AnalyticsAdapterManager";
 import tags from "src/config/tracking";
-import {environment} from "src/config/";
+import { environment } from "src/config/";
 
 /**
  * The analytics default route page.
@@ -96,4 +96,4 @@ function trackEvent(event) {
     }
 }
 
-export default {install};
+export default { install };

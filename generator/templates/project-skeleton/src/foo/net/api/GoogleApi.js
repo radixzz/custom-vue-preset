@@ -1,4 +1,4 @@
-import {environment} from "src/config";
+import { environment } from "src/config";
 import AbstractApi from "./AbstractApi";
 
 export default class GoogleApi extends AbstractApi {
@@ -26,10 +26,10 @@ export default class GoogleApi extends AbstractApi {
      * @type {{clientid: null, callback: null, scope: string, cookiepolicy: string}}
      */
     static params = {
-        "clientid": null,
-        "callback": null,
-        "scope": "https://www.googleapis.com/auth/plus.login",
-        "cookiepolicy": "none"
+        clientid: null,
+        callback: null,
+        scope: "https://www.googleapis.com/auth/plus.login",
+        cookiepolicy: "none"
     };
 
     /**
@@ -49,7 +49,7 @@ export default class GoogleApi extends AbstractApi {
     static configSDK() {
         gapi.load("auth2", () => {
             this.loaded = true;
-            this.GoogleAuth = gapi.auth2.init({client_id: environment.properties.gp});
+            this.GoogleAuth = gapi.auth2.init({ client_id: environment.properties.gp });
             this.GoogleAuth.then(() => {
                 this.sdkConfigured();
             });
@@ -78,7 +78,7 @@ export default class GoogleApi extends AbstractApi {
                     email: prof.getEmail()
                 };
                 const auth = this.GoogleUser.getAuthResponse();
-                resolve({profile, auth});
+                resolve({ profile, auth });
             })
             .then(undefined, (error) => {
                 console.error(error);

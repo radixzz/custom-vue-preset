@@ -11,10 +11,10 @@ export default Vue.component('LoaderTransition', {
             },
             on: {
                 enter: (el, done) => {
-                    TweenMax.fromTo(vm.$el, 0.5, {alpha: 0}, {alpha: 1, ease: Sine.easeOut, onComplete: done});
+                    TweenMax.fromTo(vm.$el, 0.5, { alpha: 0 }, { alpha: 1, ease: Sine.easeOut, onComplete: done });
                 },
                 leave: (el, done) => {
-                    TweenMax.to(vm.$el, 0.5, {alpha: 0, ease: Sine.easeOut, onComplete: done});
+                    TweenMax.to(vm.$el, 0.5, { alpha: 0, ease: Sine.easeOut, onComplete: done });
                 },
             }
         };

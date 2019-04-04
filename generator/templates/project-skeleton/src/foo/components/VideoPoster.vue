@@ -48,61 +48,61 @@
 </style>
 
 <script>
-    import {TweenMax} from "gsap";
-    import PlayIcon from "assets/svg/play.svg";
+import { TweenMax } from "gsap";
+import PlayIcon from "assets/svg/play.svg";
 
-    export default {
-        props: {
-            className: {
-                type: String,
-                default: "",
-            },
-            hasPlayButton: {
-                type: Boolean,
-                default: false,
-            },
-            poster: {
-                type: String,
-                required: true,
-            },
-            fadeDuration: {
-                type: Number,
-                default: 0,
-            },
+export default {
+    props: {
+        className: {
+            type: String,
+            default: "",
         },
-        data() {
-            return {};
+        hasPlayButton: {
+            type: Boolean,
+            default: false,
         },
-        components: {PlayIcon},
-        mounted() {
+        poster: {
+            type: String,
+            required: true,
         },
-        methods: {
-            onEnter(el, done) {
-                TweenMax.fromTo(
-                    el,
-                    this.fadeDuration / 1000,
-                    {autoAlpha: 0},
-                    {autoAlpha: 1, onComplete: done},
-                );
-            },
-            onLeave(el, done) {
-                TweenMax.to(el, this.fadeDuration / 1000, {
-                    autoAlpha: 0,
-                    onComplete: done,
-                });
-            },
-            onClickHandler() {
-                this.$emit("click");
-            },
+        fadeDuration: {
+            type: Number,
+            default: 0,
         },
-        computed: {
-            styleObject() {
-                return {
-                    backgroundImage: `url('${this.poster}')`,
-                };
-            },
+    },
+    data() {
+        return {};
+    },
+    components: { PlayIcon },
+    mounted() {
+    },
+    methods: {
+        onEnter(el, done) {
+            TweenMax.fromTo(
+                el,
+                this.fadeDuration / 1000,
+                { autoAlpha: 0 },
+                { autoAlpha: 1, onComplete: done },
+            );
         },
-    };
+        onLeave(el, done) {
+            TweenMax.to(el, this.fadeDuration / 1000, {
+                autoAlpha: 0,
+                onComplete: done,
+            });
+        },
+        onClickHandler() {
+            this.$emit("click");
+        },
+    },
+    computed: {
+        styleObject() {
+            return {
+                backgroundImage: `url('${this.poster}')`,
+            };
+        },
+    },
+};
 </script>
 
 <template>

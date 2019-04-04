@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 import request from "superagent";
-import {config} from "src/config";
+import { config } from "src/config";
 import store from "@/app/store";
-import {LOCALE_CHANGED, LOCALE_LOADING} from "@/app/store/modules/app";
+import { LOCALE_CHANGED, LOCALE_LOADING } from "@/app/store/modules/app";
 
 export default class LocaleManager {
     /**
@@ -71,7 +71,7 @@ export default class LocaleManager {
             promise = request
                 .get(`${store.getters.public}/data/locale/${localeId}.json`)
                 .catch(error => console.error(`Failed to load locale: ${error}`))
-                .then(response => {
+                .then((response) => {
                     LocaleManager.loadedLocales.push(localeId);
                     LocaleManager.i18n.setLocaleMessage(localeId, response.body);
                     LocaleManager.userLocale.set(localeId);

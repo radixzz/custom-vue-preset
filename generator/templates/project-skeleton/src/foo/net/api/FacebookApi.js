@@ -1,4 +1,4 @@
-import {config, environment} from "src/config/index";
+import { config, environment } from "src/config/index";
 import request from "superagent";
 import AbstractApi from "./AbstractApi";
 
@@ -20,6 +20,7 @@ export default class Facebook extends AbstractApi {
      * @default "//connect.facebook.net/es_MX/all.js"
      */
     static url = "//connect.facebook.net/es_MX/all.js";
+
     /**
      * The Facebook permissions array
      * @property permissions
@@ -62,8 +63,8 @@ export default class Facebook extends AbstractApi {
     static login(resolve, reject) {
         if (!this.loaded) reject("Facebook SDK not loaded! call Facebook.setup() before login. You should enable the Facebook from the config file.");
         FB.login((res) => {
-            if (res["status"] === "connected") {
-                this._getUserData(res["authResponse"]["accessToken"], resolve);
+            if (res.status === "connected") {
+                this._getUserData(res.authResponse.accessToken, resolve);
             } else {
                 reject("Access Denied");
             }
@@ -81,7 +82,7 @@ export default class Facebook extends AbstractApi {
      */
     static _getUserData(token, resolve) {
         let count = 0;
-        let userData = {
+        const userData = {
             auth: {},
             profile: {}
         };
@@ -90,12 +91,12 @@ export default class Facebook extends AbstractApi {
         };
 
         FB.api("/me?fields=email,first_name,gender,id,locale,last_name,middle_name,name", (res) => {
-            userData.profile = {profile_pic: userData.profile.profile_pic, ...res};
+            userData.profile = { profile_pic: userData.profile.profile_pic, ...res };
             solve();
         });
 
-        FB.api("me/picture", {"width": "200"}, (res) => {
-            userData.profile["profile_pic"] = res.data;
+        FB.api("me/picture", { width: "200" }, (res) => {
+            userData.profile.profile_pic = res.data;
             solve();
         });
 
@@ -149,7 +150,7 @@ export default class Facebook extends AbstractApi {
      */
     static getUserLocations(token = null, limit = 20) {
         return new Promise((resolve, reject) => {
-            FB.api("/me/tagged_places", {token, limit}, (response) => {
+            FB.api("/me/tagged_places", { token, limit }, (response) => {
                 resolve(response.data);
             });
         });
@@ -164,7 +165,7 @@ export default class Facebook extends AbstractApi {
     static getUserLikes(token = null, limit = 100) {
         let likes = [];
         return new Promise((resolve, reject) => {
-            FB.api("/me/likes", {token, limit}, (response) => {
+            FB.api("/me/likes", { token, limit }, (response) => {
                 likes = likes.concat(response.data);
                 if (response.paging.next) {
                     nextPage(response.paging.next);

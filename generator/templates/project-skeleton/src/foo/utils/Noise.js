@@ -56,7 +56,7 @@ export default class Noise {
     /**
      * @param {{container: HTMLElement, tile: number, globalAlpha:number}} data
      */
-    constructor({container, tile = 256, globalAlpha = 0.08}) {
+    constructor({ container, tile = 256, globalAlpha = 0.08 }) {
         if (!container) throw new Error("You must pass a container DOM element");
         this.container = container;
         this.canvas = document.createElement("canvas");
@@ -151,7 +151,7 @@ export default class Noise {
     /**
      * @param {{container:HTMLElement }} data
      */
-    resize = ({container}) => {
+    resize = ({ container }) => {
         this.width = container.offsetWidth * window.devicePixelRatio;
         this.height = container.offsetHeight * window.devicePixelRatio;
     };

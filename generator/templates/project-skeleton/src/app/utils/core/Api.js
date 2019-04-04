@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import request from 'superagent'
 
 export default class Api {
@@ -18,9 +19,9 @@ export default class Api {
             .send(data)
         if (response.status === 200) {
             return response
-        } else {
-            throw response
         }
+        throw response
+
     }
 
     /**
@@ -30,8 +31,8 @@ export default class Api {
         const response = await request.get(endpoint)
         if (response.status === 200) {
             return response
-        } else {
-            throw response
         }
+        throw response
+
     }
 }

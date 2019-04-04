@@ -9,6 +9,7 @@ export default class Vec2 {
      * @type {number}
      */
     x = 0;
+
     /**
      * @default 0
      * @type {number}
@@ -54,7 +55,7 @@ export default class Vec2 {
     add(x, y) {
         if (x instanceof Vec2) {
             this.x += x.x;
-            this.y *= x.y;
+            this.y += x.y;
             return this;
         }
         this.x += x;
@@ -340,10 +341,10 @@ export default class Vec2 {
      * @return {Vec2}
      */
     rotateAround(center, angle) {
-        let c = Math.cos(angle);
-        let s = Math.sin(angle);
-        let x = this.x - center.x;
-        let y = this.y - center.y;
+        const c = Math.cos(angle);
+        const s = Math.sin(angle);
+        const x = this.x - center.x;
+        const y = this.y - center.y;
         this.x = x * c - y * s + center.x;
         this.y = x * s + y * c + center.y;
         return this;
@@ -375,7 +376,7 @@ export default class Vec2 {
      * @return {string}
      */
     toString() {
-        return this.x.toFixed(3).replace(/\.?0+$/, '') + "," + this.y.toFixed(3).replace(/\.?0+$/, '');
+        return `${this.x.toFixed(3).replace(/\.?0+$/, '')},${this.y.toFixed(3).replace(/\.?0+$/, '')}`;
     }
 
     /**
@@ -386,10 +387,10 @@ export default class Vec2 {
      */
     static withinBounds(vector, size) {
         const radius = ~~(size / 2) + 1;
-        return this.x >= vector.x - radius &&
-            this.x <= vector.x + radius &&
-            this.y >= vector.y - radius &&
-            this.y <= vector.y + radius;
+        return this.x >= vector.x - radius
+            && this.x <= vector.x + radius
+            && this.y >= vector.y - radius
+            && this.y <= vector.y + radius;
     }
 
     /**

@@ -1,4 +1,5 @@
 import { environment } from 'src/config'
+
 export const LOCALE_CHANGED = 'locale/changed'
 export const LOCALE_LOADING = 'locale/loading'
 export const ASSET_LOADING = 'app/loading'

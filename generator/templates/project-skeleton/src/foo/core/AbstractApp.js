@@ -1,6 +1,6 @@
-import {environment, config} from "src/config";
+import { environment, config } from "src/config";
 import data from "src/config/data.json";
-import {Signal} from "signals";
+import { Signal } from "signals";
 import throttle from "lodash/throttle";
 import LocaleManager from "foo/core/locale/LocaleManager";
 
@@ -131,8 +131,8 @@ export default class AbstractApp {
      * @method renderApp
      * @returns {void}
      */
-    renderApp() {
-    }
+    // eslint-disable-next-line class-methods-use-this
+    renderApp() {}
 
     /**
      * Method that init listeners depending on the App config
@@ -155,7 +155,7 @@ export default class AbstractApp {
     _onResize = throttle(() => {
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.resize.dispatch({width: this.width, height: this.height});
+        this.resize.dispatch({ width: this.width, height: this.height });
     }, 16);
 
     /**

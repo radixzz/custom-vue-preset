@@ -23,6 +23,7 @@ export default class KeyCode {
      * @default 9
      */
     static TAB = 9;
+
     /**
      * @property CAPS_LOCK
      * @static
@@ -30,6 +31,7 @@ export default class KeyCode {
      * @default 20
      */
     static CAPS_LOCK = 20;
+
     /**
      * @property SHIFT
      * @static
@@ -37,6 +39,7 @@ export default class KeyCode {
      * @default 16
      */
     static SHIFT = 16;
+
     /**
      * @property CONTROL
      * @static
@@ -44,6 +47,7 @@ export default class KeyCode {
      * @default 17
      */
     static CONTROL = 17;
+
     /**
      * @property SPACE
      * @static
@@ -51,6 +55,7 @@ export default class KeyCode {
      * @default 32
      */
     static SPACE = 32;
+
     /**
      * @property DOWN
      * @static
@@ -58,6 +63,7 @@ export default class KeyCode {
      * @default 40
      */
     static DOWN = 40;
+
     /**
      * @property UP
      * @static
@@ -65,6 +71,7 @@ export default class KeyCode {
      * @default 38
      */
     static UP = 38;
+
     /**
      * @property LEFT
      * @static
@@ -72,6 +79,7 @@ export default class KeyCode {
      * @default 37
      */
     static LEFT = 37;
+
     /**
      * @property RIGHT
      * @static
@@ -79,6 +87,7 @@ export default class KeyCode {
      * @default 39
      */
     static RIGHT = 39;
+
     /**
      * @property ESCAPE
      * @static
@@ -86,6 +95,7 @@ export default class KeyCode {
      * @default 27
      */
     static ESCAPE = 27;
+
     /**
      * @property F1
      * @static
@@ -93,6 +103,7 @@ export default class KeyCode {
      * @default 112
      */
     static F1 = 112;
+
     /**
      * @property F2
      * @static
@@ -100,6 +111,7 @@ export default class KeyCode {
      * @default 113
      */
     static F2 = 113;
+
     /**
      * @property F3
      * @static
@@ -107,6 +119,7 @@ export default class KeyCode {
      * @default 114
      */
     static F3 = 114;
+
     /**
      * @property F4
      * @static
@@ -114,6 +127,7 @@ export default class KeyCode {
      * @default 115
      */
     static F4 = 115;
+
     /**
      * @property F5
      * @static
@@ -121,6 +135,7 @@ export default class KeyCode {
      * @default 116
      */
     static F5 = 116;
+
     /**
      * @property F6
      * @static
@@ -128,6 +143,7 @@ export default class KeyCode {
      * @default 117
      */
     static F6 = 117;
+
     /**
      * @property F7
      * @static
@@ -135,6 +151,7 @@ export default class KeyCode {
      * @default 118
      */
     static F7 = 118;
+
     /**
      * @property F8
      * @static
@@ -142,6 +159,7 @@ export default class KeyCode {
      * @default 119
      */
     static F8 = 119;
+
     /**
      * @property F9
      * @static
@@ -149,6 +167,7 @@ export default class KeyCode {
      * @default 120
      */
     static F9 = 120;
+
     /**
      * @property F10
      * @static
@@ -156,6 +175,7 @@ export default class KeyCode {
      * @default 121
      */
     static F10 = 121;
+
     /**
      * @property F11
      * @static
@@ -163,6 +183,7 @@ export default class KeyCode {
      * @default 122
      */
     static F11 = 122;
+
     /**
      * @property F12
      * @static
@@ -170,6 +191,7 @@ export default class KeyCode {
      * @default 123
      */
     static F12 = 123;
+
     /**
      * @property INSERT
      * @static
@@ -177,6 +199,7 @@ export default class KeyCode {
      * @default 45
      */
     static INSERT = 45;
+
     /**
      * @property HOME
      * @static
@@ -184,6 +207,7 @@ export default class KeyCode {
      * @default 36
      */
     static HOME = 36;
+
     /**
      * @property PAGE_UP
      * @static
@@ -191,6 +215,7 @@ export default class KeyCode {
      * @default 33
      */
     static PAGE_UP = 33;
+
     /**
      * @property PAGE_DOWN
      * @static
@@ -198,6 +223,7 @@ export default class KeyCode {
      * @default 34
      */
     static PAGE_DOWN = 34;
+
     /**
      * @property DELETE
      * @static
@@ -205,6 +231,7 @@ export default class KeyCode {
      * @default 46
      */
     static DELETE = 46;
+
     /**
      * @property END
      * @static
@@ -212,6 +239,7 @@ export default class KeyCode {
      * @default 35
      */
     static END = 35;
+
     /**
      * @property ENTER
      * @static
@@ -219,6 +247,7 @@ export default class KeyCode {
      * @default 13
      */
     static ENTER = 13;
+
     /**
      * @property BACKSPACE
      * @static
@@ -226,6 +255,7 @@ export default class KeyCode {
      * @default 8
      */
     static BACKSPACE = 8;
+
     /**
      * @property NUMPAD_0
      * @static
@@ -233,6 +263,7 @@ export default class KeyCode {
      * @default 96
      */
     static NUMPAD_0 = 96;
+
     /**
      * @property NUMPAD_1
      * @static
@@ -240,6 +271,7 @@ export default class KeyCode {
      * @default 97
      */
     static NUMPAD_1 = 97;
+
     /**
      * @property NUMPAD_2
      * @static
@@ -247,6 +279,7 @@ export default class KeyCode {
      * @default 98
      */
     static NUMPAD_2 = 98;
+
     /**
      * @property NUMPAD_3
      * @static
@@ -254,6 +287,7 @@ export default class KeyCode {
      * @default 99
      */
     static NUMPAD_3 = 99;
+
     /**
      * @property NUMPAD_4
      * @static
@@ -261,6 +295,7 @@ export default class KeyCode {
      * @default 100
      */
     static NUMPAD_4 = 100;
+
     /**
      * @property NUMPAD_5
      * @static
@@ -268,6 +303,7 @@ export default class KeyCode {
      * @default 101
      */
     static NUMPAD_5 = 101;
+
     /**
      * @property NUMPAD_6
      * @static
@@ -275,6 +311,7 @@ export default class KeyCode {
      * @default 102
      */
     static NUMPAD_6 = 102;
+
     /**
      * @property NUMPAD_7
      * @static
@@ -282,6 +319,7 @@ export default class KeyCode {
      * @default 103
      */
     static NUMPAD_7 = 103;
+
     /**
      * @property NUMPAD_8
      * @static
@@ -289,6 +327,7 @@ export default class KeyCode {
      * @default 104
      */
     static NUMPAD_8 = 104;
+
     /**
      * @property NUMPAD_9
      * @static
@@ -296,6 +335,7 @@ export default class KeyCode {
      * @default 105
      */
     static NUMPAD_9 = 105;
+
     /**
      * @property NUMPAD_DIVIDE
      * @static
@@ -303,6 +343,7 @@ export default class KeyCode {
      * @default 111
      */
     static NUMPAD_DIVIDE = 111;
+
     /**
      * @property NUMPAD_ADD
      * @static
@@ -310,6 +351,7 @@ export default class KeyCode {
      * @default 107
      */
     static NUMPAD_ADD = 107;
+
     /**
      * @property NUMPAD_ENTER
      * @static
@@ -317,6 +359,7 @@ export default class KeyCode {
      * @default 13
      */
     static NUMPAD_ENTER = 13;
+
     /**
      * @property NUMPAD_DECIMAL
      * @static
@@ -324,6 +367,7 @@ export default class KeyCode {
      * @default 110
      */
     static NUMPAD_DECIMAL = 110;
+
     /**
      * @property NUMPAD_SUBTRACT
      * @static
@@ -331,6 +375,7 @@ export default class KeyCode {
      * @default 109
      */
     static NUMPAD_SUBTRACT = 109;
+
     /**
      * @property NUMPAD_MULTIPLY
      * @static
@@ -346,6 +391,7 @@ export default class KeyCode {
      * @default 186
      */
     static SEMICOLON = 186;
+
     /**
      * @property EQUAL
      * @static
@@ -353,6 +399,7 @@ export default class KeyCode {
      * @default 187
      */
     static EQUAL = 187;
+
     /**
      * @property COMMA
      * @static
@@ -360,6 +407,7 @@ export default class KeyCode {
      * @default 188
      */
     static COMMA = 188;
+
     /**
      * @property MINUS
      * @static
@@ -367,6 +415,7 @@ export default class KeyCode {
      * @default 189
      */
     static MINUS = 189;
+
     /**
      * @property PERIOD
      * @static
@@ -374,6 +423,7 @@ export default class KeyCode {
      * @default 190
      */
     static PERIOD = 190;
+
     /**
      * @property SLASH
      * @static
@@ -381,6 +431,7 @@ export default class KeyCode {
      * @default 191
      */
     static SLASH = 191;
+
     /**
      * @property BACKQUOTE
      * @static
@@ -388,6 +439,7 @@ export default class KeyCode {
      * @default 192
      */
     static BACKQUOTE = 192;
+
     /**
      * @property LEFTBRACKET
      * @static
@@ -395,6 +447,7 @@ export default class KeyCode {
      * @default 219
      */
     static LEFTBRACKET = 219;
+
     /**
      * @property BACKSLASH
      * @static
@@ -402,6 +455,7 @@ export default class KeyCode {
      * @default 220
      */
     static BACKSLASH = 220;
+
     /**
      * @property RIGHTBRACKET
      * @static
@@ -409,6 +463,7 @@ export default class KeyCode {
      * @default 221
      */
     static RIGHTBRACKET = 221;
+
     /**
      * @property QUOTE
      * @static
@@ -416,6 +471,7 @@ export default class KeyCode {
      * @default 222
      */
     static QUOTE = 222;
+
     /**
      * @property ALT
      * @static
@@ -423,6 +479,7 @@ export default class KeyCode {
      * @default 18
      */
     static ALT = 18;
+
     /**
      * @property COMMAND
      * @static
@@ -430,6 +487,7 @@ export default class KeyCode {
      * @default 15
      */
     static COMMAND = 15;
+
     /**
      * @property NUMPAD
      * @static
@@ -445,6 +503,7 @@ export default class KeyCode {
      * @default 65
      */
     static A = 65;
+
     /**
      * @property B
      * @static
@@ -452,6 +511,7 @@ export default class KeyCode {
      * @default 66
      */
     static B = 66;
+
     /**
      * @property C
      * @static
@@ -459,6 +519,7 @@ export default class KeyCode {
      * @default 67
      */
     static C = 67;
+
     /**
      * @property D
      * @static
@@ -466,6 +527,7 @@ export default class KeyCode {
      * @default 68
      */
     static D = 68;
+
     /**
      * @property E
      * @static
@@ -473,6 +535,7 @@ export default class KeyCode {
      * @default 69
      */
     static E = 69;
+
     /**
      * @property F
      * @static
@@ -480,6 +543,7 @@ export default class KeyCode {
      * @default 70
      */
     static F = 70;
+
     /**
      * @property G
      * @static
@@ -487,6 +551,7 @@ export default class KeyCode {
      * @default 71
      */
     static G = 71;
+
     /**
      * @property H
      * @static
@@ -494,6 +559,7 @@ export default class KeyCode {
      * @default 72
      */
     static H = 72;
+
     /**
      * @property I
      * @static
@@ -501,6 +567,7 @@ export default class KeyCode {
      * @default 73
      */
     static I = 73;
+
     /**
      * @property J
      * @static
@@ -508,6 +575,7 @@ export default class KeyCode {
      * @default 74
      */
     static J = 74;
+
     /**
      * @property K
      * @static
@@ -515,6 +583,7 @@ export default class KeyCode {
      * @default 75
      */
     static K = 75;
+
     /**
      * @property L
      * @static
@@ -522,6 +591,7 @@ export default class KeyCode {
      * @default 76
      */
     static L = 76;
+
     /**
      * @property M
      * @static
@@ -529,6 +599,7 @@ export default class KeyCode {
      * @default 77
      */
     static M = 77;
+
     /**
      * @property N
      * @static
@@ -536,6 +607,7 @@ export default class KeyCode {
      * @default 78
      */
     static N = 78;
+
     /**
      * @property O
      * @static
@@ -543,6 +615,7 @@ export default class KeyCode {
      * @default 79
      */
     static O = 79;
+
     /**
      * @property P
      * @static
@@ -550,6 +623,7 @@ export default class KeyCode {
      * @default 80
      */
     static P = 80;
+
     /**
      * @property Q
      * @static
@@ -557,6 +631,7 @@ export default class KeyCode {
      * @default 81
      */
     static Q = 81;
+
     /**
      * @property R
      * @static
@@ -564,6 +639,7 @@ export default class KeyCode {
      * @default 82
      */
     static R = 82;
+
     /**
      * @property S
      * @static
@@ -571,6 +647,7 @@ export default class KeyCode {
      * @default 83
      */
     static S = 83;
+
     /**
      * @property T
      * @static
@@ -578,6 +655,7 @@ export default class KeyCode {
      * @default 84
      */
     static T = 84;
+
     /**
      * @property U
      * @static
@@ -585,6 +663,7 @@ export default class KeyCode {
      * @default 85
      */
     static U = 85;
+
     /**
      * @property V
      * @static
@@ -592,6 +671,7 @@ export default class KeyCode {
      * @default 86
      */
     static V = 86;
+
     /**
      * @property W
      * @static
@@ -599,6 +679,7 @@ export default class KeyCode {
      * @default 87
      */
     static W = 87;
+
     /**
      * @property X
      * @static
@@ -606,6 +687,7 @@ export default class KeyCode {
      * @default 88
      */
     static X = 88;
+
     /**
      * @property Y
      * @static
@@ -613,6 +695,7 @@ export default class KeyCode {
      * @default 89
      */
     static Y = 89;
+
     /**
      * @property Z
      * @static
@@ -628,6 +711,7 @@ export default class KeyCode {
      * @default 48
      */
     static NUM_0 = 48;
+
     /**
      * @property NUM_1
      * @static
@@ -635,6 +719,7 @@ export default class KeyCode {
      * @default 49
      */
     static NUM_1 = 49;
+
     /**
      * @property NUM_2
      * @static
@@ -642,6 +727,7 @@ export default class KeyCode {
      * @default 50
      */
     static NUM_2 = 50;
+
     /**
      * @property NUM_3
      * @static
@@ -649,6 +735,7 @@ export default class KeyCode {
      * @default 51
      */
     static NUM_3 = 51;
+
     /**
      * @property NUM_4
      * @static
@@ -656,6 +743,7 @@ export default class KeyCode {
      * @default 52
      */
     static NUM_4 = 52;
+
     /**
      * @property NUM_5
      * @static
@@ -663,6 +751,7 @@ export default class KeyCode {
      * @default 53
      */
     static NUM_5 = 53;
+
     /**
      * @property NUM_6
      * @static
@@ -670,6 +759,7 @@ export default class KeyCode {
      * @default 54
      */
     static NUM_6 = 54;
+
     /**
      * @property NUM_7
      * @static
@@ -677,6 +767,7 @@ export default class KeyCode {
      * @default 55
      */
     static NUM_7 = 55;
+
     /**
      * @property NUM_8
      * @static
@@ -684,6 +775,7 @@ export default class KeyCode {
      * @default 17
      */
     static NUM_8 = 56;
+
     /**
      * @property NUM_9
      * @static
@@ -699,6 +791,7 @@ export default class KeyCode {
      * @default 189
      */
     static SUBSTRACT = 189;
+
     /**
      * @property ADD
      * @static

@@ -101,356 +101,356 @@
 </style>
 
 <script>
-    import fullscreen from "fullscreen-handler";
-    import BackgroundVideo from "./BackgroundVideo.vue";
-    import {TweenMax, Expo} from "gsap";
-    import VideoTimeline from "./VideoTimeline.vue";
-    import VideoPoster from "./VideoPoster.vue";
-    import {secondsToString} from "foo/utils/TimeUtils";
-    import app from 'app/app'
+import fullscreen from "fullscreen-handler";
+import { TweenMax, Expo } from "gsap";
+import { secondsToString } from "foo/utils/TimeUtils";
+import app from 'app/app'
 
-    import PlayIcon from "assets/svg/play.svg";
-    import PauseIcon from "assets/svg/pause.svg";
-    import MutedIcon from "assets/svg/muted.svg"
-    import UnMutedIcon from "assets/svg/unmuted.svg";
-    import EnterFsIcon from "assets/svg/enter-fullscreen.svg";
-    import LeaveFsIcon from "assets/svg/exit-fullscreen.svg";
-    import CloseIcon from "assets/svg/close.svg";
-    import CaptionsOnIcon from "assets/svg/captions-on.svg";
-    import CaptionsOffIcon from "assets/svg/captions-off.svg";
+import PlayIcon from "assets/svg/play.svg";
+import PauseIcon from "assets/svg/pause.svg";
+import MutedIcon from "assets/svg/muted.svg"
+import UnMutedIcon from "assets/svg/unmuted.svg";
+import EnterFsIcon from "assets/svg/enter-fullscreen.svg";
+import LeaveFsIcon from "assets/svg/exit-fullscreen.svg";
+import CloseIcon from "assets/svg/close.svg";
+import CaptionsOnIcon from "assets/svg/captions-on.svg";
+import CaptionsOffIcon from "assets/svg/captions-off.svg";
+import VideoPoster from "./VideoPoster.vue";
+import VideoTimeline from "./VideoTimeline.vue";
+import BackgroundVideo from "./BackgroundVideo.vue";
 
-    export default {
-        props: {
-            className: {
-                type: String,
-                default: "",
-            },
-            src: {
-                type: String,
-                required: true,
-            },
-            poster: {
-                type: String,
-            },
-            preload: {
-                type: String,
-                default: "auto",
-            },
-            captions: {
-                type: Object,
-            },
-            disableBackgroundCover: {
-                type: Boolean,
-                default: false,
-            },
-            id: {
-                type: [String, Number],
-                default: "",
-            },
-            allowKeyboardControl: {
-                type: Boolean,
-                default: true,
-            },
-            autoPlay: {
-                type: Boolean,
-                default: false,
-            },
-            muted: {
-                type: Boolean,
-                default: false,
-            },
-            loop: {
-                type: Boolean,
-                default: false,
-            },
-            togglePlayOnClick: {
-                type: Boolean,
-                default: true,
-            },
-            showControlsOnLoad: {
-                type: Boolean,
-                default: false,
-            },
-            hasCloseButton: {
-                type: Boolean,
-                default: false,
-            },
-            hasPlayButton: {
-                type: Boolean,
-                default: true,
-            },
-            showPosterOnEnd: {
-                type: Boolean,
-                default: false,
-            },
-            hasControls: {
-                type: Boolean,
-                default: true,
-            },
-            playsInline: {
-                type: Boolean,
-                default: false,
-            },
-            autoPlayDelay: {
-                type: Number,
-                default: 0,
-            },
-            controlsTimeout: {
-                type: Number,
-                default: 2500,
-            },
-            windowWidth: {
-                type: Number,
-                default: 0,
-            },
-            windowHeight: {
-                type: Number,
-                default: 0,
-            },
-            volume: {
-                type: Number,
-                default: 1,
-            },
-            startTime: {
-                type: Number,
-                default: 0,
-            },
-            posterFadeDuration: {
-                type: Number,
-                default: 0,
-            },
-            useNoise: {
-                type: Boolean,
-                default: false,
-            }
+export default {
+    props: {
+        className: {
+            type: String,
+            default: "",
         },
-        data() {
-            return {
-                containerWidth: this.windowWidth,
-                containerHeight: this.windowHeight,
-                isPlaying: false,
-                isMuted: this.muted,
-                isFullScreen: false,
-                isShowingCaptions: this.captions && this.captions.default,
-                currentCaptions: "",
-                currentTime: 0,
-                progress: 0,
-                duration: 0,
-            };
+        src: {
+            type: String,
+            required: true,
         },
-        components: {
-            BackgroundVideo,
-            VideoTimeline,
-            VideoPoster,
-            PlayIcon,
-            PauseIcon,
-            MutedIcon,
-            UnMutedIcon,
-            EnterFsIcon,
-            LeaveFsIcon,
-            CloseIcon,
-            CaptionsOnIcon,
-            CaptionsOffIcon
+        poster: {
+            type: String,
         },
-        mounted() {
-            this.$nextTick(() => {
-                this.fullscreen = fullscreen(this.$el, this.enterFullScreenHandler, this.exitFullScreenHandler);
-
-                //TODO: verifiy if this is the best place, or a transition?
-                if (this.hasControls) {
-                    this.showControlsOnLoad ? this.setHideControlsTimeout() : this.hideControls(0);
-                }
-
-                if (this.autoPlay) {
-                    this.autoPlayTimeout = setTimeout(() => {
-                        this.play();
-                        this.clearAutoPlayTimeout();
-                    }, this.autoPlayDelay);
-                }
-
-                if (this.captions) {
-                    TweenMax.set(this.$refs["captionsContainer"], {autoAlpha: Boolean(this.isShowingCaptions)});
-                }
-                app.resize.add(this.onResize);
-            });
+        preload: {
+            type: String,
+            default: "auto",
         },
-        methods: {
-            onResize({width, height}) {
-                this.containerWidth = width;
-                this.containerHeight = height;
-            },
-            getVideoElement() {
-                return this.$refs["video"].$refs["video"];
-            },
-            setHideControlsTimeout() {
-                this.clearHideControlsTimeout();
-                this.hideControlsTimeout = setTimeout(() => {
-                    this.isPlaying && this.hideControls();
-                }, this.controlsTimeout);
-            },
-            clearHideControlsTimeout() {
-                if (this.hideControlsTimeout) {
-                    clearTimeout(this.hideControlsTimeout);
-                    this.hideControlsTimeout = undefined;
-                }
-            },
-            showControls(duration = 0.8, ease = Expo.easeOut) {
-                this.$refs["closeButton"] && TweenMax.to(this.$refs["closeButton"], duration, {y: "0%", ease});
-                this.$refs["controls"] && TweenMax.to(this.$refs["controls"], duration, {y: "0%", ease});
-            },
-            hideControls(duration = 0.8, ease = Expo.easeOut) {
-                this.$refs["closeButton"] && TweenMax.to(this.$refs["closeButton"], duration, {y: "-100%", ease});
-                this.$refs["controls"] && TweenMax.to(this.$refs["controls"], duration, {y: "100%", ease});
-            },
-            readyHandler() {
-                if (this.captions) {
-                    this.captions.src && this.setCaptions();
-                }
-            },
-            play() {
-                !this.isPlaying && this.$refs["video"].play();
-            },
-            togglePlay() {
-                this.togglePlayOnClick && this.$refs["video"].togglePlay();
-            },
-            playHandler() {
-                this.isPlaying = true;
-            },
-            pause() {
-                this.isPlaying && this.$refs["video"].pause();
-            },
-            pauseHandler() {
-                this.isPlaying = false;
-            },
-            mute() {
-                !this.isMuted && this.$refs["video"].mute();
-            },
-            muteHandler() {
-                this.isMuted = true;
-            },
-            unmute() {
-                this.isMuted && this.$refs["video"].unmute();
-            },
-            unMuteHandler() {
-                this.isMuted = false;
-            },
-            toggleMute() {
-                this.$refs["video"].toggleMute();
-            },
-            clearAutoPlayTimeout() {
-                this.autoPlayTimeout && clearTimeout(this.autoPlayTimeout);
-            },
-            onMouseMoveHandler() {
-                if (this.isPlaying && this.hasControls) {
-                    this.showControls();
-                    this.setHideControlsTimeout();
-                }
-            },
-            keyPressHandler(event) {
-                if (this.allowKeyboardControl) {
-                    const code = event.keyCode || event.which || event.charCode;
-                    if (code === 32) this.togglePlay();
-                }
-            },
-            endHandler() {
-                this.$emit("end");
-                this.fullscreen.isFullScreen() && this.fullscreen.exit();
-                this.showPosterOnEnd && this.hideControls();
-            },
-            toggleFullScreen() {
-                this.isFullScreen ? this.fullscreen.exit() : this.fullscreen.enter();
-            },
-            enterFullScreenHandler() {
-                this.isFullScreen = true;
-                this.resize();
-            },
-            exitFullScreenHandler() {
-                this.isFullScreen = false;
-                this.resize();
-            },
-            resize() {
-                this.containerWidth = window.innerWidth;
-                this.containerHeight = window.innerHeight;
-            },
-            toggleCaptions() {
-                this.isShowingCaptions = !this.isShowingCaptions;
-            },
-            setCaptions(captions = this.captions) {
-                const video = this.$refs["video"].$refs["video"];
-                if (video.contains(this.captions)) {
-                    video.removeChild(this.captions);
-                    this.captions.removeEventListener("cuechange", this.trackChangeHandler);
-                }
-
-                const track = document.createElement("track");
-                track.kind = captions.kind;
-                track.label = captions.label;
-                track.srclang = captions.srclang;
-                track.src = captions.src;
-                track.mode = "hidden";
-
-                this.captions = track;
-                video.appendChild(this.captions);
-                video.textTracks[0].mode = "hidden";
-                this.captions.addEventListener("cuechange", this.trackChangeHandler);
-            },
-            trackChangeHandler() {
-
-            },
-            timeUpdateHandler({currentTime, progress, duration}) {
-                this.currentTime = currentTime;
-                this.progress = progress;
-                this.duration = duration;
-            },
-            timeChangeHandler(currentTime) {
-                this.$refs["video"].setCurrentTime(currentTime);
-            },
-            onCloseHandler() {
-                this.$emit("close");
-            }
+        captions: {
+            type: Object,
         },
-        computed: {
-            isPosterVisible() {
-                return !this.isPlaying && (!this.progress || (this.showPosterOnEnd && this.progress >= 1));
-            },
-            formattedTime() {
-                return secondsToString(this.currentTime);
-            },
-            totalFormattedTime() {
-                return secondsToString(this.duration);
-            }
+        disableBackgroundCover: {
+            type: Boolean,
+            default: false,
         },
-        watch: {
-            captions(value, oldValue) {
-                if (value.src !== oldValue.src) {
-                    this.setCaptions(value);
-                }
-            },
-            isPlaying(value) {
-                if (value) {
-                    this.$emit("play", {id: this.id});
-                    this.hasControls && this.setHideControlsTimeout();
-                } else {
-                    this.$emit("pause", {id: this.id});
-                    if (this.hasControls) {
-                        this.clearHideControlsTimeout();
-                        this.showControls();
-                    }
-                }
-            },
-            isShowingCaptions(value) {
-                this.captions && TweenMax.to(this.$refs["captionsContainer"], 0.1, {autoAlpha: Boolean(value)});
-            }
+        id: {
+            type: [String, Number],
+            default: "",
         },
-        beforeDestroy() {
-            app.resize.remove(this.onResize);
-            this.fullscreen.destroy();
-            this.pause();
-            this.clearAutoPlayTimeout();
-            this.hasControls && this.clearHideControlsTimeout();
-            this.captions = this.captions.removeEventListener("cuechange", this.trackChangeHandler);
+        allowKeyboardControl: {
+            type: Boolean,
+            default: true,
+        },
+        autoPlay: {
+            type: Boolean,
+            default: false,
+        },
+        muted: {
+            type: Boolean,
+            default: false,
+        },
+        loop: {
+            type: Boolean,
+            default: false,
+        },
+        togglePlayOnClick: {
+            type: Boolean,
+            default: true,
+        },
+        showControlsOnLoad: {
+            type: Boolean,
+            default: false,
+        },
+        hasCloseButton: {
+            type: Boolean,
+            default: false,
+        },
+        hasPlayButton: {
+            type: Boolean,
+            default: true,
+        },
+        showPosterOnEnd: {
+            type: Boolean,
+            default: false,
+        },
+        hasControls: {
+            type: Boolean,
+            default: true,
+        },
+        playsInline: {
+            type: Boolean,
+            default: false,
+        },
+        autoPlayDelay: {
+            type: Number,
+            default: 0,
+        },
+        controlsTimeout: {
+            type: Number,
+            default: 2500,
+        },
+        windowWidth: {
+            type: Number,
+            default: 0,
+        },
+        windowHeight: {
+            type: Number,
+            default: 0,
+        },
+        volume: {
+            type: Number,
+            default: 1,
+        },
+        startTime: {
+            type: Number,
+            default: 0,
+        },
+        posterFadeDuration: {
+            type: Number,
+            default: 0,
+        },
+        useNoise: {
+            type: Boolean,
+            default: false,
         }
-    };
+    },
+    data() {
+        return {
+            containerWidth: this.windowWidth,
+            containerHeight: this.windowHeight,
+            isPlaying: false,
+            isMuted: this.muted,
+            isFullScreen: false,
+            isShowingCaptions: this.captions && this.captions.default,
+            currentCaptions: "",
+            currentTime: 0,
+            progress: 0,
+            duration: 0,
+        };
+    },
+    components: {
+        BackgroundVideo,
+        VideoTimeline,
+        VideoPoster,
+        PlayIcon,
+        PauseIcon,
+        MutedIcon,
+        UnMutedIcon,
+        EnterFsIcon,
+        LeaveFsIcon,
+        CloseIcon,
+        CaptionsOnIcon,
+        CaptionsOffIcon
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.fullscreen = fullscreen(this.$el, this.enterFullScreenHandler, this.exitFullScreenHandler);
+
+            //TODO: verifiy if this is the best place, or a transition?
+            if (this.hasControls) {
+                this.showControlsOnLoad ? this.setHideControlsTimeout() : this.hideControls(0);
+            }
+
+            if (this.autoPlay) {
+                this.autoPlayTimeout = setTimeout(() => {
+                    this.play();
+                    this.clearAutoPlayTimeout();
+                }, this.autoPlayDelay);
+            }
+
+            if (this.captions) {
+                TweenMax.set(this.$refs.captionsContainer, { autoAlpha: Boolean(this.isShowingCaptions) });
+            }
+            app.resize.add(this.onResize);
+        });
+    },
+    methods: {
+        onResize({ width, height }) {
+            this.containerWidth = width;
+            this.containerHeight = height;
+        },
+        getVideoElement() {
+            return this.$refs.video.$refs.video;
+        },
+        setHideControlsTimeout() {
+            this.clearHideControlsTimeout();
+            this.hideControlsTimeout = setTimeout(() => {
+                this.isPlaying && this.hideControls();
+            }, this.controlsTimeout);
+        },
+        clearHideControlsTimeout() {
+            if (this.hideControlsTimeout) {
+                clearTimeout(this.hideControlsTimeout);
+                this.hideControlsTimeout = undefined;
+            }
+        },
+        showControls(duration = 0.8, ease = Expo.easeOut) {
+            this.$refs.closeButton && TweenMax.to(this.$refs.closeButton, duration, { y: "0%", ease });
+            this.$refs.controls && TweenMax.to(this.$refs.controls, duration, { y: "0%", ease });
+        },
+        hideControls(duration = 0.8, ease = Expo.easeOut) {
+            this.$refs.closeButton && TweenMax.to(this.$refs.closeButton, duration, { y: "-100%", ease });
+            this.$refs.controls && TweenMax.to(this.$refs.controls, duration, { y: "100%", ease });
+        },
+        readyHandler() {
+            if (this.captions) {
+                this.captions.src && this.setCaptions();
+            }
+        },
+        play() {
+            !this.isPlaying && this.$refs.video.play();
+        },
+        togglePlay() {
+            this.togglePlayOnClick && this.$refs.video.togglePlay();
+        },
+        playHandler() {
+            this.isPlaying = true;
+        },
+        pause() {
+            this.isPlaying && this.$refs.video.pause();
+        },
+        pauseHandler() {
+            this.isPlaying = false;
+        },
+        mute() {
+            !this.isMuted && this.$refs.video.mute();
+        },
+        muteHandler() {
+            this.isMuted = true;
+        },
+        unmute() {
+            this.isMuted && this.$refs.video.unmute();
+        },
+        unMuteHandler() {
+            this.isMuted = false;
+        },
+        toggleMute() {
+            this.$refs.video.toggleMute();
+        },
+        clearAutoPlayTimeout() {
+            this.autoPlayTimeout && clearTimeout(this.autoPlayTimeout);
+        },
+        onMouseMoveHandler() {
+            if (this.isPlaying && this.hasControls) {
+                this.showControls();
+                this.setHideControlsTimeout();
+            }
+        },
+        keyPressHandler(event) {
+            if (this.allowKeyboardControl) {
+                const code = event.keyCode || event.which || event.charCode;
+                if (code === 32) this.togglePlay();
+            }
+        },
+        endHandler() {
+            this.$emit("end");
+            this.fullscreen.isFullScreen() && this.fullscreen.exit();
+            this.showPosterOnEnd && this.hideControls();
+        },
+        toggleFullScreen() {
+            this.isFullScreen ? this.fullscreen.exit() : this.fullscreen.enter();
+        },
+        enterFullScreenHandler() {
+            this.isFullScreen = true;
+            this.resize();
+        },
+        exitFullScreenHandler() {
+            this.isFullScreen = false;
+            this.resize();
+        },
+        resize() {
+            this.containerWidth = window.innerWidth;
+            this.containerHeight = window.innerHeight;
+        },
+        toggleCaptions() {
+            this.isShowingCaptions = !this.isShowingCaptions;
+        },
+        setCaptions(captions = this.captions) {
+            const { video } = this.$refs.video.$refs;
+            if (video.contains(this.captions)) {
+                video.removeChild(this.captions);
+                this.captions.removeEventListener("cuechange", this.trackChangeHandler);
+            }
+
+            const track = document.createElement("track");
+            track.kind = captions.kind;
+            track.label = captions.label;
+            track.srclang = captions.srclang;
+            track.src = captions.src;
+            track.mode = "hidden";
+
+            this.captions = track;
+            video.appendChild(this.captions);
+            video.textTracks[0].mode = "hidden";
+            this.captions.addEventListener("cuechange", this.trackChangeHandler);
+        },
+        trackChangeHandler() {
+
+        },
+        timeUpdateHandler({ currentTime, progress, duration }) {
+            this.currentTime = currentTime;
+            this.progress = progress;
+            this.duration = duration;
+        },
+        timeChangeHandler(currentTime) {
+            this.$refs.video.setCurrentTime(currentTime);
+        },
+        onCloseHandler() {
+            this.$emit("close");
+        }
+    },
+    computed: {
+        isPosterVisible() {
+            return !this.isPlaying && (!this.progress || (this.showPosterOnEnd && this.progress >= 1));
+        },
+        formattedTime() {
+            return secondsToString(this.currentTime);
+        },
+        totalFormattedTime() {
+            return secondsToString(this.duration);
+        }
+    },
+    watch: {
+        captions(value, oldValue) {
+            if (value.src !== oldValue.src) {
+                this.setCaptions(value);
+            }
+        },
+        isPlaying(value) {
+            if (value) {
+                this.$emit("play", { id: this.id });
+                this.hasControls && this.setHideControlsTimeout();
+            } else {
+                this.$emit("pause", { id: this.id });
+                if (this.hasControls) {
+                    this.clearHideControlsTimeout();
+                    this.showControls();
+                }
+            }
+        },
+        isShowingCaptions(value) {
+            this.captions && TweenMax.to(this.$refs.captionsContainer, 0.1, { autoAlpha: Boolean(value) });
+        }
+    },
+    beforeDestroy() {
+        app.resize.remove(this.onResize);
+        this.fullscreen.destroy();
+        this.pause();
+        this.clearAutoPlayTimeout();
+        this.hasControls && this.clearHideControlsTimeout();
+        this.captions = this.captions.removeEventListener("cuechange", this.trackChangeHandler);
+    }
+};
 </script>
 
 <template>

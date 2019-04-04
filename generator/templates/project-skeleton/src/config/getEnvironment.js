@@ -6,9 +6,7 @@ export default function (environments) {
     const environment = Object
         .entries(environments)
         // Sort environments by priority
-        .sort((a, b) => {
-            return a[1].priority - b[1].priority
-        })
+        .sort((a, b) => a[1].priority - b[1].priority)
         .reduce((prev, [key, env]) => {
             if (prev === null) {
                 let isSameHref;

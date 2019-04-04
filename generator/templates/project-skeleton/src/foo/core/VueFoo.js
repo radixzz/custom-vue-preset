@@ -1,5 +1,5 @@
 import request from "superagent";
-import LocaleManager from "foo/core/locale/LocaleManager";
+import LocaleManager from "@/foo/core/locale/LocaleManager";
 
 const VueFoo = {};
 

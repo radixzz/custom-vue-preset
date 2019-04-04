@@ -87,48 +87,48 @@
 </style>
 
 <script>
-    export default {
-        props: {
-            className: {
-                type: String,
-                default: "",
-            },
-            duration: {
-                type: Number,
-                required: true,
-            },
-            currentTime: {
-                type: Number,
-                required: true,
-            },
+export default {
+    props: {
+        className: {
+            type: String,
+            default: "",
         },
-        data() {
+        duration: {
+            type: Number,
+            required: true,
+        },
+        currentTime: {
+            type: Number,
+            required: true,
+        },
+    },
+    data() {
+        return {
+            isMouseDown: false,
+        };
+    },
+    methods: {
+        onChangeHandler() {
+            this.$emit("timechange", this.$refs.input.value);
+        },
+        onUpdateHandler() {
+            this.$emit("timechange", this.$refs.input.value);
+        },
+        onMouseDownHandler() {
+            this.isMouseDown = true;
+        },
+        onMouseUpHandler() {
+            this.isMouseDown = false;
+        },
+    },
+    computed: {
+        progressStyle() {
             return {
-                isMouseDown: false,
-            };
-        },
-        methods: {
-            onChangeHandler() {
-                this.$emit("timechange", this.$refs["input"].value);
-            },
-            onUpdateHandler() {
-                this.$emit("timechange", this.$refs["input"].value);
-            },
-            onMouseDownHandler() {
-                this.isMouseDown = true;
-            },
-            onMouseUpHandler() {
-                this.isMouseDown = false;
-            },
-        },
-        computed: {
-            progressStyle() {
-                return {
-                    width: this.currentTime / this.duration * 100 + "%",
-                }
+                width: `${this.currentTime / this.duration * 100}%`,
             }
         }
     }
+}
 </script>
 
 <template>

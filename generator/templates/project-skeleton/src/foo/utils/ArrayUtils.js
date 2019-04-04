@@ -29,7 +29,7 @@ export function inArrayField(array, field, value) {
      * @return {Array}
      */
 export function shuffle(array, modify = false) {
-    let isView = ArrayBuffer && ArrayBuffer.isView && ArrayBuffer.isView(array);
+    const isView = ArrayBuffer && ArrayBuffer.isView && ArrayBuffer.isView(array);
     array = modify || isView ? array : array.slice();
     let rnd = array.length;
     let tmp = array.length;
@@ -62,8 +62,8 @@ export function copy(array, target) {
      * @return {Array} the cloned Array
      */
 export function deepArrayClone(array) {
-    let ret = array.concat();
-    let iLim = ret.length;
+    const ret = array.concat();
+    const iLim = ret.length;
     let i;
     for (i = 0; i < iLim; i++) {
         ret[i] = deepArrayClone(ret[i]);
@@ -110,7 +110,7 @@ export function removeValueFromArray(array, value) {
  * @returns {boolean} A boolean which indicates if a value was removed
  */
 export function removeValueFromArrayOnce(array, value) {
-    let len = array.length;
+    const len = array.length;
     for (let i = len; i > -1; i--) {
         if (array[i] === value) {
             array.splice(i, 1);
@@ -161,7 +161,7 @@ export function areEqual(array1, array2) {
     */
 export function filledLength(array) {
     let length = 0;
-    let leni = array.length;
+    const leni = array.length;
     for (let i = 0; i < leni; i++) {
         if (array[i] !== undefined) length++;
     }
@@ -175,7 +175,7 @@ export function filledLength(array) {
      * @return {Array} The resulting array with the items unique in first array
      */
 export function getUniqueFirst(array1, array2) {
-    let ret = [];
+    const ret = [];
     for (let i = 0; i < array1.length; i++) {
         if (array2.indexOf(array1[i]) === -1) ret.push(array1[i]);
     }
@@ -202,7 +202,7 @@ export function addElements(element, amount = 1, array = []) {
      * @return {Array} The new Array without empty elements
      */
 export function removeEmptyElements(array) {
-    let results = [];
+    const results = [];
     for (let i = 0; i < array.length; i++) {
         if (array[i] !== "" && array[i] !== null && array[i] !== undefined) results.push(array[i]);
     }

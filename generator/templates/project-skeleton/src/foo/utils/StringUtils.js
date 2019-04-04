@@ -116,7 +116,7 @@ export function beforeFirst(pstring, pchar) {
     if (pstring === null) {
         return "";
     }
-    let idx = pstring.indexOf(pchar);
+    const idx = pstring.indexOf(pchar);
     if (idx === -1) {
         return "";
     }
@@ -133,7 +133,7 @@ export function beforeLast(pstring, pchar) {
     if (pstring === null) {
         return "";
     }
-    let idx = pstring.lastIndexOf(pchar);
+    const idx = pstring.lastIndexOf(pchar);
     if (idx === -1) {
         return "";
     }
@@ -155,7 +155,7 @@ export function between(pstring, pstart, pend) {
     let startIdx = pstring.indexOf(pstart);
     if (startIdx !== -1) {
         startIdx += pstart.length;
-        let endIdx = pstring.indexOf(pend, startIdx);
+        const endIdx = pstring.indexOf(pend, startIdx);
         if (endIdx !== -1) {
             str = pstring.substr(startIdx, endIdx - startIdx);
         }
@@ -267,9 +267,9 @@ export function isPhoneWithSpecialCharacters(string) {
     if (re.test(string)) {
         const n = string.replace(/[^\d]/g, '');
         return !!(n && n.length === 10);
-    } else {
-        return false;
     }
+    return false;
+
 }
 
 /**
@@ -295,11 +295,11 @@ export function repeat(string, amount) {
  */
 export function padLeft(string, length, fillChar = " ") {
     if (fillChar === null || fillChar.length === 0) {
-        throw new Error("invalid value for fillChar: '" + fillChar + "'");
+        throw new Error(`invalid value for fillChar: '${fillChar}'`);
     }
 
     if (string.length < length) {
-        let lim = length - string.length;
+        const lim = length - string.length;
         for (let i = 0; i < lim; i++) {
             string = fillChar + string;
         }
@@ -316,10 +316,10 @@ export function padLeft(string, length, fillChar = " ") {
  */
 export function padRight(string, length, fillChar = " ") {
     if (fillChar === null || fillChar.length === 0) {
-        throw new Error("invalid value for fillChar: '" + fillChar + "'");
+        throw new Error(`invalid value for fillChar: '${fillChar}'`);
     }
     if (string.length < length) {
-        let lim = length - string.length;
+        const lim = length - string.length;
         for (let i = 0; i < lim; i++) {
             string += fillChar;
         }

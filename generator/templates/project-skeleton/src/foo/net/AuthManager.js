@@ -32,10 +32,10 @@ export default class AuthManager {
      * @type {{xeerpa, facebook, google, api}}
      */
     static apis = {
-        "xeerpa": Xeerpa,
-        "facebook": Facebook,
-        "google": Google,
-        "api": Api,
+        xeerpa: Xeerpa,
+        facebook: Facebook,
+        google: Google,
+        api: Api,
     };
 
     /**

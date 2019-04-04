@@ -1,6 +1,6 @@
+import { defaultsDeep } from "lodash";
 import DEFAULT_CONFIG from "./defaultConfig";
 import getEnvironment from "./getEnvironment";
-import { defaultsDeep } from "lodash";
 
 /**
  * @typedef EnvironmentVars

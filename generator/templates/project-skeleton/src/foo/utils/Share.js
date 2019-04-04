@@ -19,7 +19,7 @@ export default class Share {
     static _openWindow(url, w, h) {
         const left = (window.screen.availWidth - w) >> 1;
         const top = (window.screen.availHeight - h) >> 1;
-        window.open(url, "", "top=" + top + ",left=" + left + ",width=" + w + ",height=" + h + ",location=no,menubar=no");
+        window.open(url, "", `top=${top},left=${left},width=${w},height=${h},location=no,menubar=no`);
     }
 
     /**

@@ -4,7 +4,7 @@ export default Vue.component("GSAP", {
     functional: true,
     render: (h, ctx) => {
         // let vm = ctx.parent;
-        let data = {
+        const data = {
             props: {
                 name: "GSAP",
                 css: false,
@@ -12,23 +12,23 @@ export default Vue.component("GSAP", {
                 //mode:"out-in"
             },
             on: {
-                beforeEnter: el => {},
+                beforeEnter: () => {},
                 enter: (el, done) => {
-                    TweenMax.fromTo(el, 0.55, {x: 300, alpha: 0}, {
+                    TweenMax.fromTo(el, 0.55, { x: 300, alpha: 0 }, {
                         x: 0,
                         alpha: 1,
                         ease: Power3.easeOut,
                         onComplete: done
                     });
                 },
-                afterEnter: el => {},
-                enterCancelled: el => {},
-                beforeLeave: el => {},
+                afterEnter: () => {},
+                enterCancelled: () => {},
+                beforeLeave: () => {},
                 leave: (el, done) => {
-                    TweenMax.to(el, 0.55, {x: -300, alpha: 0, ease: Power3.easeOut, onComplete: done});
+                    TweenMax.to(el, 0.55, { x: -300, alpha: 0, ease: Power3.easeOut, onComplete: done });
                 },
-                afterLeave: el => {},
-                leaveCancelled: el => {},
+                afterLeave: () => {},
+                leaveCancelled: () => {},
             }
         };
         return h("transition", data, ctx.children);

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /**
  * @typedef Rect
  * @prop {Number} width

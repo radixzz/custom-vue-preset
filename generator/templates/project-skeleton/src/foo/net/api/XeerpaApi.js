@@ -1,5 +1,5 @@
-import AbstractApi from "./AbstractApi";
 import { environment } from "src/config";
+import AbstractApi from "./AbstractApi";
 
 /**
  * Xeerpa social login helper class.
@@ -19,6 +19,7 @@ export default class Xeerpa extends AbstractApi {
      * @type {string}
      */
     static FB = "FB";
+
     /**
      * LinkedIn static string ID
      * @default "LI"
@@ -27,6 +28,7 @@ export default class Xeerpa extends AbstractApi {
      * @type {string}
      */
     static LI = "LI";
+
     /**
      * Twitter static string ID
      * @default "TW"
@@ -35,6 +37,7 @@ export default class Xeerpa extends AbstractApi {
      * @type {string}
      */
     static TW = "TW";
+
     /**
      * Google static string ID
      * @default "IG"
@@ -43,6 +46,7 @@ export default class Xeerpa extends AbstractApi {
      * @type {string}
      */
     static GO = "GO";
+
     /**
      * Instagram static string ID
      * @default "IG"
@@ -96,10 +100,10 @@ export default class Xeerpa extends AbstractApi {
         const url = environment.properties.xeerpa;
         const apiURL = `${url}?socialNetwork=${sn}&data=${data}`;
         window.addEventListener("message", this._messageHandler, false);
-        window.open(apiURL, "Login", "width=" + (500) + ", height=" + (475) + ", scrollbars=yes");
+        window.open(apiURL, "Login", `width=${500}, height=${475}, scrollbars=yes`);
         if (navigator.appName === "Microsoft Internet Explorer" || !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv 11/))) {
             this._cookieInterval = window.setInterval(() => {
-                let data = this._readCookie();
+                const data = this._readCookie();
                 if (data) {
                     window.clearInterval(this._cookieInterval);
                     this._receiveData(data);
@@ -120,7 +124,7 @@ export default class Xeerpa extends AbstractApi {
      */
     static _messageHandler = (event) => {
         if (typeof event.data !== "string") return;
-        let data = JSON.parse(event.data);
+        const data = JSON.parse(event.data);
         if (data.socialNetwork) Xeerpa._receiveData(data);
     }
 
@@ -132,13 +136,13 @@ export default class Xeerpa extends AbstractApi {
      */
     static _readCookie() {
         if (!document.cookie) return;
-        let cookies = document.cookie.split(";");
+        const cookies = document.cookie.split(";");
         for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i].split("=");
+            const cookie = cookies[i].split("=");
             if (cookie[0].trim() === "user") {
                 let value = cookie[1];
                 value = JSON.parse(value);
-                document.cookie = "user=;path=/;expires=" + new Date(Date.now() - 1000).toGMTString();
+                document.cookie = `user=;path=/;expires=${new Date(Date.now() - 1000).toGMTString()}`;
                 return value;
             }
         }

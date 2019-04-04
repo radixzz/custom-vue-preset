@@ -1,4 +1,4 @@
-import {padLeft} from "foo/utils/StringUtils";
+import { padLeft } from "foo/utils/StringUtils";
 
 /**
  * Convert a string to seconds, with these formats supported:
@@ -9,7 +9,7 @@ import {padLeft} from "foo/utils/StringUtils";
  * @returns {number} The number of seconds parsed
  */
 export function stringToSeconds(value, delimiter = ":") {
-    let arr = value.split(delimiter);
+    const arr = value.split(delimiter);
     let sec = 0;
     if (value.substr(-1) === "s") {
         sec = parseFloat(value.substr(0, value.length - 1));
@@ -61,11 +61,11 @@ export function formatTime(milliseconds, delimiter = ":") {
  * @returns {string} The string of the formatted time
  */
 export function formatTime2(milliseconds, delimiter = ":") {
-    return padLeft((Math.floor(milliseconds / 86400000)).toString(), 2, "0") +
-        delimiter + padLeft((Math.floor(milliseconds / 3600000) % 24).toString(), 2, "0") +
-        delimiter + padLeft((Math.floor(milliseconds / 60000) % 60).toString(), 2, "0") +
-        delimiter + padLeft((Math.floor(milliseconds * 0.001) % 60).toString(), 2, "0") +
-        "._" + padLeft((Math.round(Math.floor(milliseconds % 1000))).toString(), 3, "0");
+    return `${padLeft((Math.floor(milliseconds / 86400000)).toString(), 2, "0")
+        + delimiter + padLeft((Math.floor(milliseconds / 3600000) % 24).toString(), 2, "0")
+        + delimiter + padLeft((Math.floor(milliseconds / 60000) % 60).toString(), 2, "0")
+        + delimiter + padLeft((Math.floor(milliseconds * 0.001) % 60).toString(), 2, "0")
+    }._${padLeft((Math.round(Math.floor(milliseconds % 1000))).toString(), 3, "0")}`;
 }
 
 /**

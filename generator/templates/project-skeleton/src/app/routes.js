@@ -1,6 +1,6 @@
 import { environment } from '../config/index'
-import Home from '@/app/views/Home'
-import NotFound from '@/app/views/NotFound'
+import Home from '@/app/views/Home.vue'
+import NotFound from '@/app/views/NotFound.vue'
 
 const routes = {
     mode: 'history',

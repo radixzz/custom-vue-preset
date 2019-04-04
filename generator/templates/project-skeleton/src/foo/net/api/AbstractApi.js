@@ -89,7 +89,7 @@ export default class AbstactApi {
         if (this.loaded) return;
         this.loaded = true;
         this.configSDK();
-    };
+    }
 
     static configSDK() {
         this.sdkConfigured();

@@ -14,11 +14,11 @@
 <script>
 import { mapState } from 'vuex'
 import isMobile from 'ismobilejs'
-import Preloader from './components/base/Preloader'
-import RotateDevice from './components/base/RotateDevice'
-import LayoutHeader from './components/layout/LayoutHeader'
-import LayoutMain from './components/layout/LayoutMain'
-import LayoutFooter from './components/layout/LayoutFooter'
+import Preloader from './components/base/Preloader.vue'
+import RotateDevice from './components/base/RotateDevice.vue'
+import LayoutHeader from './components/layout/LayoutHeader.vue'
+import LayoutMain from './components/layout/LayoutMain.vue'
+import LayoutFooter from './components/layout/LayoutFooter.vue'
 
 export default {
     name: 'App',

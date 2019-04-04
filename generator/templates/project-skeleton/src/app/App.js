@@ -35,7 +35,7 @@ export default class App extends AbstractApp {
             next();
         });
         sync(store, router);
-        let i18n = LocaleManager.i18n;
+        const { i18n } = LocaleManager;
         /* eslint-disable no-new */
         new Vue({
             el: "#app",
