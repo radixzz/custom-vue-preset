@@ -1,0 +1,13 @@
+{
+  "removals": [
+    "public/index.html",
+    "public/favicon.ico",
+    "src/App.vue",
+    "src/assets/logo.png",
+    "src/components/HelloWorld.vue",
+    "src/router.js",
+    "src/store.js",
+    "src/views/About.vue",
+    "src/views/Home.vue"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "router": false,
+  "vuex": false,
+  "cssPreprocessor": "stylus",
+  "useConfigFiles": true,
+  "routerHistoryMode": true,
+  "configs": {
+    "babel": {
+      "plugins": [],
+      "presets": [
+        "@vue/app"
+      ]
+    },
+    "vue": {},
+    "postcss": {}
+  }
+}
