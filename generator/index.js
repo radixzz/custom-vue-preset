@@ -40,8 +40,7 @@ module.exports = (api, config) => {
   }
 
   api.extendPackage({
-    dependencies: {
-      ...getDependencies(config),
-    },
+    dependencies: { ...getDependencies(config) },
+    devDependencies: dependencies.development,
   });
 }
