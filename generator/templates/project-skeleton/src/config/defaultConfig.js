@@ -5,7 +5,7 @@ const DEFAULT_ENVIRONMENT = {
     url: {
         base: "",
         subdirectory: "",
-        public: "/static",
+        public: "/assets",
         api: "/api",
     },
     analytics: [
