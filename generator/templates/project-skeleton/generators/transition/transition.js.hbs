@@ -1,0 +1,33 @@
+import Vue from "vue";
+
+export default Vue.component( "{{#camelize}}{{name}}{{/camelize}}", {
+    functional: true,
+    render    : function ( h, ctx ) {
+        let vm = ctx.parent;
+        let data = {
+            props: {
+                name: "{{#camelize}}{{name}}{{/camelize}}",
+                css:   false,
+                appear: false,
+                //mode:"out-in"
+            },
+            on   : {
+                beforeEnter: el => {
+
+                },
+                enter: (el, done) => {
+                    done();
+                },
+                afterEnter: el => {},
+                enterCancelled: el => {},
+                beforeLeave: el => {},
+                leave: (el, done) => {
+                    done();
+                },
+                afterLeave: el => {},
+                leaveCancelled: el => {},
+            }
+        };
+        return h( "transition", data, ctx.children );
+    }
+} )
