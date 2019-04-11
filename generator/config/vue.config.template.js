@@ -1,3 +1,4 @@
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const rucksack = require('rucksack-css');
 const rupture = require('rupture');
@@ -19,6 +20,9 @@ module.exports = {
             new CopyPlugin([
                 { from: 'static', to: 'assets' },
             ]),
+            new WebappWebpackPlugin({
+                logo: resolve('favicon/favicon_template.png'),
+            }),
         ]
     },
     css: {
