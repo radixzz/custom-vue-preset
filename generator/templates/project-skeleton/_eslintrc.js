@@ -1,17 +1,33 @@
+const path = require('path');
+
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+
 module.exports = {
   root: true,
   env: {
     node: true,
+    browser: true,
   },
   extends: [
     'plugin:vue/essential',
     '@vue/airbnb',
   ],
   settings: {
-    // https://github.com/vuejs/vue-cli/issues/2628
     'import/resolver': {
       webpack: {
-        config: require.resolve('@vue/cli-service/webpack.config.js')
+        config: {
+          resolve: {
+            alias: {
+              '@': resolve('src'),
+              'src': resolve('src'),
+              'foo': resolve('src/foo'),
+              'assets': resolve('src/assets'),
+              'styles': resolve('src/styles'),
+            }
+          }
+        }
       }
     },
   },
